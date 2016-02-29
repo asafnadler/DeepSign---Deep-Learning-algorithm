@@ -42,4 +42,34 @@ The function receive only the data and return the modified data
 fit_transform: performs both fit and transforms the same data and return the transformed data.
 Receives the same parameters as fit and return results as transform.
 
+
+deep_learning file contains methods to work with the  transformer.
+The main method deep_learn_csv receives csv path and a transformer and applies the transformer on the data, Then it transforms the data and saves it under a new csv file (path received as a parameter)
+If the csv file is complicated it is possible to remove column (which will be added later in the printout) by providing the list of column names in remove_columns parameter. The same goes for ids column (ids parameter) and class column (responses parameter) if they exist.
+
+
+The __init__ file contains the main program of the code.
+The file contains 4 lists:
+csv_sources : sources of the csv on which to operate.
+classes : list of classes column in for each datasource (correlated to the csv_resource list)
+reduction_counts : list of number of desired feature for each dataset (correlated to the csv_resource list)
+params : list of parameters to use. the parameters are defined above it.
+
+The main program goes over all csv resources and for each, it performs tranformation with each of the parameters.
+The result will be |csv_resources|*|params| csv files which will be output to the same directory where the resource is with the extension _dl# to it (# according to the parameter order in list)
+
+
+
 Instruction for contributing to the code:
+
+It is possible to contribute different functions:
+
+Optimizer_function file: should contain different types of optimizer for the deep_transformer, currently it present only one optimizer which is described in deepsign article.
+
+reduction_function: contains different reduction function.
+A reduction function is a function that receives adataset x, and returns a number to which the transformer should compress the feature count.
+Mostly, the function looks at the length of the data (number of features is visible bt using len(x[0]) ) and then deciding the new count.
+For examle half_reduction_function receives data with l parameters and returns the number l/2
+Note that the number must be smaller then the number of current features, or else the algorithm will never stop.
+
+Enjoy using and contributing to this code.
