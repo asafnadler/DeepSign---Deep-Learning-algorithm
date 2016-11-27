@@ -1,5 +1,5 @@
 from keras.models import Sequential
-from keras.layers.core import Dense, Dropout, AutoEncoder
+from keras.layers.core import Dense, Dropout #, AutoEncoder
 from reduction_functions import *
 from sklearn.base import TransformerMixin
 
